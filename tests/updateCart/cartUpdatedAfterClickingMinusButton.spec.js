@@ -8,30 +8,24 @@ for (const [key, value] of Object.entries(COFFEE_NAMES)) {
   testParameters.push({ coffee: value, price: COFFEE_PRICES[key] });
 }
 
-testParameters.forEach(({ coffee, price }) => {
+testParameters.forEach(({ coffee }) => {
   test(`Assert cart updated correctly after clicking minus for drinks`, async ({
     menuPage,
     cartPage,
   }) => {
-
-    const coffee1 = COFFEE_NAMES.espresso;
-   const coffee2 = COFFEE_NAMES.cappuccino;
    
 
   await menuPage.open();
-  await menuPage.clickCoffeeCup(coffee1);
-  await menuPage.clickCoffeeCup(coffee2);
+  await menuPage.clickCoffeeCup(coffee);
+
 
   await menuPage.clickCartLink();
   await cartPage.waitForLoading();
 
-  await cartPage.assertCoffeeItemIsVisible(coffee1,coffee2);
-  await cartPage.clickRemoveCoffeeButton(coffee1);
+  await cartPage.assertCoffeeItemIsVisible(coffee);
+  await cartPage.clickRemoveCoffeeButton(coffee);
 
-  await cartPage.assertCoffeeItemIsHidden(coffee1);
-  await cartPage.assertOtherCoffeeItemsAreVisible(coffee2);
-
-  await cartPage.clickRemoveCoffeeButton(coffee2);
+  await cartPage.assertCoffeeItemIsHidden(coffee);
   await cartPage.assertNoCoffeeMessageIsVisible();
 });
 });

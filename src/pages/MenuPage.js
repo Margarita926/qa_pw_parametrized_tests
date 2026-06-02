@@ -14,7 +14,7 @@ export class MenuPage {
   }
 
   coffeeCupLocator(coffeeName) {
-    const testId = coffeeName.replace(/ /g, '_');
+    const testId = coffeeName.replace(' ', '_')
 
     return this.page.getByTestId(testId);
   }
