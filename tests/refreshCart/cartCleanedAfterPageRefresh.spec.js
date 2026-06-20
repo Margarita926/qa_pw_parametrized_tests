@@ -9,7 +9,7 @@ for (const [key, value] of Object.entries(COFFEE_NAMES)) {
 }
 
 testParameters.forEach(({ coffee }) => {
-  test(`Assert cart cleaned after page refresh`, async ({
+  test(`Assert cart with ${coffee} is cleaned after page refresh`, async ({
     menuPage,
     cartPage,
   }) => {
